@@ -1,6 +1,41 @@
 import React from 'react';
 import ArticleComponent from '../Components/Article'
+// import demGet from '../App'
+// import repGet from '../App'
 import Collapsible from 'react-collapsible'
+import firebase, { firestore } from 'firebase';
+import admin from 'firebase'
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDwRd2MgDikrwyPmuvm0RWAiamDfj_avZc",
+    authDomain: "diviread.firebaseapp.com",
+    databaseURL: "https://diviread.firebaseio.com",
+    projectId: "diviread",
+    storageBucket: "diviread.appspot.com",
+    messagingSenderId: "727339470173",
+    appId: "1:727339470173:web:4638a75eb56d3dbeaaecb4"
+  };
+  
+  const app = firebase.initializeApp(firebaseConfig);
+  const fs = app.firestore();
+  
+  var demArticles = [];
+  var repArticles = [];
+  
+  var articles = fs.collection("articles").get().then(querySnapshot => {
+    querySnapshot.forEach(doc => {
+      // console.log(doc.id, " => ", doc.data().side);
+      const articlePush = <ArticleComponent title={"" + doc.data().title} date={"" + doc.data().date} source={"" + doc.data().source} description={"" + doc.data().link} />
+      if (doc.data().side.toString().toLowerCase() === 'd') {
+        // const article = <ArticleComponent title={"Title " + j} date={"09/2" + j + "/2020"} source={"Source " + j} description={"Description " + j}
+        demArticles.push( articlePush );
+      } else {
+        repArticles.push( articlePush );
+      }
+    });
+  });
+  console.log(demArticles);
 
 /*NOTE: When Importing the Democratic/Republican News Sources:
 
@@ -21,10 +56,8 @@ Also, set 'helper' to false if you are importing news articles from the API.
 
 const helper = true;
 
-const demObjs = [];
-const repObjs = [];
-
-// If you are importing news articles, bode below but before the if (helper) line
+var demObjs = [];
+var repObjs = [];
 
 if (helper) {
     for (var i = 0; i < 6; i++) {
@@ -62,10 +95,11 @@ function TopicBox(topicObj) {
             <div className="demArticle">
                 {/* {dems} */}
                 {demObjs}
+                {/* {demArticles} */}
             </div>
             <div className="repArticle">
-                {/* {reps} */}
                 {repObjs}
+                {/* {repArticles} */}
             </div>
         </div>
     );

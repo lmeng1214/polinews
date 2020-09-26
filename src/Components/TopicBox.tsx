@@ -1,6 +1,5 @@
 import React from 'react';
 import ArticleComponent from '../Components/Article'
-import Collapsible from 'react-collapsible'
 
 /*NOTE: When Importing the Democratic/Republican News Sources:
 

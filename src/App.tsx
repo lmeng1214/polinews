@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import firebase from 'firebase'
 import { FirestoreDocument, FirestoreCollection, FirestoreProvider } from "@react-firebase/firestore";
 import './App.css';
+import TopicBox from './Components/TopicBox';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Header from './Header';
@@ -42,6 +43,11 @@ function App() {
         <Button variant="primary" onClick={handleShow} className="settings-button">
           Settings
         </Button>
+        <header className="App-header">
+          <TopicBox title="Local Politics" />
+          <TopicBox title="Regional Politics"/>
+          <TopicBox title="Global Politics" />
+        </header>
         <Modal 
           show={show}
           onHide={handleClose}
@@ -65,5 +71,4 @@ function App() {
     </FirestoreProvider>
   );
 }
-
 export default App;

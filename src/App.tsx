@@ -5,6 +5,8 @@ import './App.css';
 import TopicBox from './Components/TopicBox';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton'
 import Header from './Header';
 
 function App() {
@@ -22,11 +24,21 @@ function App() {
     appId: "1:727339470173:web:4638a75eb56d3dbeaaecb4"
   };
 
+  const sources1   = [
+    "CNN", "NewsWeek", "MSNBC", "ABC News", "Bloomberg", "CBS News",
+    "NBC News", "Politico", "Time", "The Washington Post"
+  ]
+  const sources2 = [
+    "The American Conservative", "Fox News",
+    "The Wall Street Journal", "The Washington Times", "National Review", "Breitbart News"
+  ]
+  const [value, setValue] = useState([1,17])
+
   return (
     <FirestoreProvider {...firebaseConfig} firebase={firebase}>
       <div className="App">
         <Header/>
-        <FirestoreCollection path="/topics/" limit={1}>
+        {/* <FirestoreCollection path="/topics/" limit={1}>
           {d => {
             return d.isLoading ? "Loading" : <pre>{d.value[0].democrat[0]}</pre>;
           }}
@@ -39,7 +51,7 @@ function App() {
               return  <pre>{d.value.source}</pre>
             }
           }}
-        </FirestoreDocument>
+        </FirestoreDocument> */}
         <Button variant="primary" onClick={handleShow} className="settings-button">
           Settings
         </Button>
@@ -53,12 +65,34 @@ function App() {
           onHide={handleClose}
           backdrop="static"
           keyboard={false}
+          size="xl"
         >
           <Modal.Header closeButton>
             <Modal.Title>Settings</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             Filter news sources here
+            <ToggleButtonGroup type="checkbox" >
+              {sources1.map((name, index) => (
+                <ToggleButton
+                  name="checkbox"
+                  value={index+1}
+                >
+                  {name}
+                </ToggleButton>
+              ))}
+            </ToggleButtonGroup>
+            <br></br>
+            <ToggleButtonGroup type="checkbox" >
+              {sources2.map((name, index) => (
+                <ToggleButton
+                  name="checkbox"
+                  value={index+1}
+                >
+                  {name}
+                </ToggleButton>
+              ))}
+            </ToggleButtonGroup>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>

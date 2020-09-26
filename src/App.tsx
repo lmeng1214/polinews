@@ -5,6 +5,8 @@ import './App.css';
 import TopicBox from './Components/TopicBox';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton'
 import Header from './Header';
 import ArticleComponent from './Components/Article';
 
@@ -54,6 +56,16 @@ function App() {
 
   // console.log(articles.get());
 
+  const sources1   = [
+    "CNN", "NewsWeek", "MSNBC", "ABC News", "Bloomberg", "CBS News",
+    "NBC News", "Politico", "Time", "The Washington Post"
+  ]
+  const sources2 = [
+    "The American Conservative", "Fox News",
+    "The Wall Street Journal", "The Washington Times", "National Review", "Breitbart News"
+  ]
+  const [value, setValue] = useState([1,17])
+
   return (
     <FirestoreProvider {...firebaseConfig} firebase={firebase}>
       <div className="App">
@@ -95,12 +107,34 @@ function App() {
           onHide={handleClose}
           backdrop="static"
           keyboard={false}
+          size="xl"
         >
           <Modal.Header closeButton>
             <Modal.Title>Settings</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             Filter news sources here
+            <ToggleButtonGroup type="checkbox" >
+              {sources1.map((name, index) => (
+                <ToggleButton
+                  name="checkbox"
+                  value={index+1}
+                >
+                  {name}
+                </ToggleButton>
+              ))}
+            </ToggleButtonGroup>
+            <br></br>
+            <ToggleButtonGroup type="checkbox" >
+              {sources2.map((name, index) => (
+                <ToggleButton
+                  name="checkbox"
+                  value={index+1}
+                >
+                  {name}
+                </ToggleButton>
+              ))}
+            </ToggleButtonGroup>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>

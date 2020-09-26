@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding: 0.5px;
 }
 
 .App-logo {
@@ -14,12 +15,12 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: black;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -35,4 +36,38 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.TopicComp {
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  /* grid-template-columns: auto auto; */
+  margin-top: 3%;
+  scroll-behavior: smooth;
+}
+
+.topicTitle {
+  /* text-align: center; */
+  border: 1px solid wheat;
+  width: 25%;
+}
+
+.demArticle {
+  width: 50%;
+}
+
+.repArticle {
+  width: 50%;
+  flex-grow: 1;
+}
+
+.demArticle, .repArticle {
+  /* padding: 1%; */
+  border: 1px solid white;
+  margin-left: 1%;
+  scroll-behavior: smooth;
+}
+
+.CollapsibleParagraph {
+  color: yellow;
 }

@@ -1,4 +1,4 @@
-## DIVIREAD/POLINEWS
+## POLINEWS
 
 Built for SBUHacks 2020. 
 

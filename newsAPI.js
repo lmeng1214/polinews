@@ -1,19 +1,8 @@
 const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI('538773bdc607434db53d5a0f5b1525c4');
 
 var firebase = require("firebase/app");
 require("firebase/auth");
 require("firebase/firestore");
-
-var firebaseConfig = {
-  apiKey: "AIzaSyDwRd2MgDikrwyPmuvm0RWAiamDfj_avZc",
-  authDomain: "diviread.firebaseapp.com",
-  databaseURL: "https://diviread.firebaseio.com",
-  projectId: "diviread",
-  storageBucket: "diviread.appspot.com",
-  messagingSenderId: "727339470173",
-  appId: "1:727339470173:web:4638a75eb56d3dbeaaecb4"
-};
 
 var firebaseApp = firebase.initializeApp(firebaseConfig);
 
